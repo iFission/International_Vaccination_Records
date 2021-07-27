@@ -1,0 +1,82 @@
+{
+	"compiler": {
+		"version": "0.8.4+commit.c7e474f2"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "passportNumber",
+						"type": "string"
+					}
+				],
+				"name": "retrieve",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "passportNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "info",
+						"type": "string"
+					}
+				],
+				"name": "store",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Records.sol": "Records"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Records.sol": {
+			"keccak256": "0x169d801b48d5e751f6579bdb8ab34bcfbd2b2dcecf4a22b81d27c5559b610adc",
+			"urls": [
+				"bzz-raw://d621d35f4c05075a5f35c577febe11e93c0be6b3f2a0724fbce702dea5b05437",
+				"dweb:/ipfs/QmSbGwbA9Y8cNm114KAgvQYJiARzCsr1C8yHCeecdCGkEH"
+			]
+		}
+	},
+	"version": 1
+}
