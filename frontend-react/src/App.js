@@ -9,7 +9,7 @@ class App extends Component {
   }
 
   async loadBlockchainData() {
-    const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
+    const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
     const accounts = await web3.eth.getAccounts();
     this.setState({ account: accounts[0] });
     const vaccineRecords = new web3.eth.Contract(
@@ -19,8 +19,10 @@ class App extends Component {
     this.setState({ vaccineRecords });
     const alexInfo = await vaccineRecords.methods.retrieve("alex").call();
     // const mumInfo = await vaccineRecords.methods.store("mummy", "sinovac").call();
+    console.log('alexInfo');
     console.log(alexInfo);
     this.setState({ alexInfo });
+    // this.setState({ mumInfo });
     // for (var i = 1; i <= taskCount; i++) {
     //   const task = await todoList.methods.tasks(i).call()
     //   this.setState({
