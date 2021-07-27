@@ -55,10 +55,28 @@
       }
 
       // Set Account
-      web3.eth.defaultAccount = web3.eth.accounts[0];
+      web3.eth.defaultAccount = web3.eth.accounts[1];
 
       // Set Contract Abi
       var contractAbi = [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "passportNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "info",
+				"type": "string"
+			}
+		],
+		"name": "store",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"inputs": [
 			{
@@ -77,29 +95,11 @@
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "passportNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "info",
-				"type": "string"
-			}
-		],
-		"name": "store",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	}
 ]; // Add Your Contract ABI here!!!
 
       // Set Contract Address
-      var contractAddress = '0xB78b856C489F2BD3B6475a37EB5Ae8F8F0508739'; // Add Your Contract address here!!!
+      var contractAddress = '0x4909C51f251c9F6D9d5Ab46CAeaBc94ba3b49093'; // Add Your Contract address here!!!
 
       // Set the Contract
       var contract = web3.eth.contract(contractAbi).at(contractAddress);
