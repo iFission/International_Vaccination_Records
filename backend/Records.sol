@@ -12,9 +12,9 @@ contract Records {
     string[] passportNumbers;
     mapping (string => Record) records;
 
-    function store(string memory passportNumber, string memory info) public {
+    function store(string memory passportNumber, string memory vaccineManufacturer, string memory country) public {
         passportNumbers.push(passportNumber);
-        records[passportNumber] = Record({passportNumber: passportNumber, vaccineManufacturer: info, country: "Singapore", timestamp: block.timestamp});
+        records[passportNumber] = Record({passportNumber: passportNumber, vaccineManufacturer: vaccineManufacturer, country: country, timestamp: block.timestamp});
     }
 
     function retrieve(string memory passportNumber) public view returns (string memory, string memory, string memory, uint){

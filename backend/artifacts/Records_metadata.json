@@ -48,7 +48,12 @@
 					},
 					{
 						"internalType": "string",
-						"name": "info",
+						"name": "vaccineManufacturer",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "country",
 						"type": "string"
 					}
 				],
@@ -86,10 +91,10 @@
 	},
 	"sources": {
 		"Records.sol": {
-			"keccak256": "0x017c28c5a213e00809fe7f9df482011ce6feae90e681cdaeb5c752f49395d578",
+			"keccak256": "0x545ad843013d18e0b2cc9fe6a628449560b1f590445871c204ab47dca7a4a683",
 			"urls": [
-				"bzz-raw://e91558f76fb0ca4160612f49bb4e8ba9319f1a7f8d2dfe2a752e6deddc4d0581",
-				"dweb:/ipfs/QmS9RyfkW6BaDabhttiR2GQ8WDJ9YRZaMJzZfmMfMDsMoR"
+				"bzz-raw://c809809a6f95b67bb2851963c351c89f67369c39e399be1b8116922d8429adf6",
+				"dweb:/ipfs/QmfNJWYvChHujk8TgPe3GEVqJX4H5SLsHjHNuZGSBU6NqL"
 			]
 		}
 	},
