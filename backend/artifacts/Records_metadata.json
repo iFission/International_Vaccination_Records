@@ -9,6 +9,71 @@
 				"inputs": [
 					{
 						"internalType": "string",
+						"name": "countryName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "population",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "vaccinatedNumbers",
+						"type": "uint256"
+					}
+				],
+				"name": "addCountry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "countryName",
+						"type": "string"
+					}
+				],
+				"name": "countryAnalaytics",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllCountries",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "",
+						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
 						"name": "passportNumber",
 						"type": "string"
 					}
@@ -91,10 +156,10 @@
 	},
 	"sources": {
 		"Records.sol": {
-			"keccak256": "0x545ad843013d18e0b2cc9fe6a628449560b1f590445871c204ab47dca7a4a683",
+			"keccak256": "0xc7a717dcd4e7307b09f5637371683a621b9a559b39c072e3dd9d40e44d81a71c",
 			"urls": [
-				"bzz-raw://c809809a6f95b67bb2851963c351c89f67369c39e399be1b8116922d8429adf6",
-				"dweb:/ipfs/QmfNJWYvChHujk8TgPe3GEVqJX4H5SLsHjHNuZGSBU6NqL"
+				"bzz-raw://9f078c5c91558f6ee2f284264a93b33179791add1bfd6c5d38fdbb11e569cb4e",
+				"dweb:/ipfs/QmW44kQNjjY6AnJQhUL1qx128RrswMmrWrmBgxet5KwGhP"
 			]
 		}
 	},
