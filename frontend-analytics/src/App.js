@@ -113,9 +113,19 @@ class App extends Component {
     const allCountries = await fullContract.methods.getAllCountries().call();
     console.log(allCountries);
     this.setState({ allCountries: allCountries });
-    const singaporeDetails = await fullContract.methods.countryAnalaytics("Singapore").call();
-    console.log(singaporeDetails);
-    // this.setState({ countryDetails: singaporeDetails });
+    const singaporeDetails = await fullContract.methods.countryAnalaytics("India").call();
+    console.log("These are the country details");
+    var firstDetails = {
+      countryName: singaporeDetails["0"],
+      population: singaporeDetails["1"],
+      vaccinated: singaporeDetails["2"]
+    }
+    console.log(singaporeDetails["0"]);
+    console.log(singaporeDetails["1"]);
+    console.log(singaporeDetails["2"]);
+    this.setState({ countryDetails: firstDetails });
+    // const countryDetails = Object.assign({}, this.state.newCtc);
+    // this.setState(Object.assign(this.state.countryDetails,{countryName:singaporeDetails["0"], population:singaporeDetails["1"], vaccinated: singaporeDetails["2"]}));
     
   }
   
@@ -131,8 +141,8 @@ class App extends Component {
       fullContract: "",
       allCountries: [],
       fullContract: "",
-      countryDetails: "",
-      filteredCountry: "Singapore",
+      countryDetails: {},
+      filteredCountry: "India",
     };
   }
   

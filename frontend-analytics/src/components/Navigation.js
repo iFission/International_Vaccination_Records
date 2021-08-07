@@ -5,8 +5,7 @@ const Navigation = ({ handleSearch, searchBar, countries }) => {
   // const Navigation = ({searchBar, countries }) => {
   const handleSearchResult = (e) => {
     handleSearch(e.target.value);
-    // this.setState({countryDetails: e.target.value});
-  console.log("I'm handling the country change");
+    console.log("I'm handling the country change");
 
   };
   return (
