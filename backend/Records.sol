@@ -11,6 +11,7 @@ contract Records {
 
     string[] passportNumbers;
     mapping (string => Record) records;
+    mapping (string => uint256) countryToPublicKeyMap;
 
     function store(string memory passportNumber, string memory vaccineManufacturer, string memory country) public {
         passportNumbers.push(passportNumber);
@@ -19,5 +20,13 @@ contract Records {
 
     function retrieve(string memory passportNumber) public view returns (string memory, string memory, string memory, uint){
         return (records[passportNumber].passportNumber, records[passportNumber].vaccineManufacturer, records[passportNumber].country, records[passportNumber].timestamp);
+    }
+    
+    function getCountryToPublicKeyMap(string memory country) public view returns(uint256){
+        return countryToPublicKeyMap[country];
+    }
+    
+    constructor() public{
+        countryToPublicKeyMap["Singapore"] = 123456;
     }
 }
