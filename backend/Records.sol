@@ -3,30 +3,54 @@ pragma solidity >=0.7.0 <0.9.0;
 contract Records {
 
     struct Record{
-        string passportNumber;
+        uint passportNumber;
         string vaccineManufacturer;
         string country;
         uint timestamp;
     }
+    
+    struct RsaKey{
+        uint key;
+        uint modulus;
+    }
 
-    string[] passportNumbers;
-    mapping (string => Record) records;
-    mapping (string => uint256) countryToPublicKeyMap;
+    uint[] passportNumbers;
+    mapping (uint => Record) records;
+    mapping (string => RsaKey) countryToPublicKeyMap;
 
-    function store(string memory passportNumber, string memory vaccineManufacturer, string memory country) public {
+
+    function store(uint passportNumber, string memory vaccineManufacturer, string memory country, uint clinicKeyCert, uint clinicModulusCert) public {
+        RsaKey memory countryPublicKey = countryToPublicKeyMap[country];
+        // uint clinicKey = computeRsa(clinicKeyCert, countryPublicKey["key"], countryPublicKey["modulus"]);
+        // RsaKey memory clinicPublicKey = RsaKey(clinicKey, clinicModulus);
+        
+        //uint clinicPublicKey = decryptRsa();
+        
         passportNumbers.push(passportNumber);
         records[passportNumber] = Record({passportNumber: passportNumber, vaccineManufacturer: vaccineManufacturer, country: country, timestamp: block.timestamp});
     }
 
-    function retrieve(string memory passportNumber) public view returns (string memory, string memory, string memory, uint){
+    function retrieve(uint passportNumber) public view returns (uint, string memory, string memory, uint){
         return (records[passportNumber].passportNumber, records[passportNumber].vaccineManufacturer, records[passportNumber].country, records[passportNumber].timestamp);
     }
     
-    function getCountryToPublicKeyMap(string memory country) public view returns(uint256){
+    function getCountryToPublicKeyMap(string memory country) public view returns(RsaKey memory){
         return countryToPublicKeyMap[country];
     }
     
+    function getClinicPublicKey(uint clinicKeyCert, uint clinicModulusCert, string memory country) public view returns(RsaKey memory){
+        RsaKey memory countryPublicKey = countryToPublicKeyMap[country];
+        uint clinicKey = computeRsa(clinicKeyCert, countryPublicKey.key, countryPublicKey.modulus);
+        uint clinicModulus = computeRsa(clinicModulusCert, countryPublicKey.key, countryPublicKey.modulus);
+        RsaKey memory clinicPublicKey = RsaKey(clinicKey, clinicModulus);
+        return clinicPublicKey;
+    }
+    
+    function computeRsa(uint x, uint exponent, uint modulus) public view returns(uint){
+        return (x**exponent)%modulus;
+    }
+    
     constructor() public{
-        countryToPublicKeyMap["Singapore"] = 123456;
+        countryToPublicKeyMap["Singapore"] = RsaKey(5, 35);
     }
 }
