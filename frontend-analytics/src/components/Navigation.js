@@ -1,10 +1,11 @@
 import React from "react";
 import "../css/Navigation.css";
 
-// const Navigation = ({ handleSearch, searchBar, countries }) => {
-  const Navigation = ({searchBar, countries }) => {
+const Navigation = ({ handleSearch, searchBar, countries }) => {
+  // const Navigation = ({searchBar, countries }) => {
   const handleSearchResult = (e) => {
-    this.setState({countryDetails: e.target.value});
+    handleSearch(e.target.value);
+    // this.setState({countryDetails: e.target.value});
   console.log("I'm handling the country change");
 
   };

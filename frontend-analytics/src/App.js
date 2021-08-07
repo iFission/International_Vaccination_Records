@@ -119,7 +119,7 @@ class App extends Component {
     
   }
   
-  handleSearch (val){
+  handleSearch = (val) => {
     // setSearchBar(val);
     this.setState({countryDetails: val});
   };
@@ -146,7 +146,7 @@ class App extends Component {
             <div className="left__screen">
               <Navigation
                 countries={this.state.allCountries}
-                // handleSearch={handleSearch}
+                handleSearch={this.handleSearch}
                 searchBar={this.setState.filteredCountry}
                 filteredCountry={this.state.filteredCountry}
               />
