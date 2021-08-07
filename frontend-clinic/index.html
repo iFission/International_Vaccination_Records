@@ -51,6 +51,7 @@
       href="vendor/daterangepicker/daterangepicker.css"
     />
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/snackbar.css" />
     <link rel="stylesheet" type="text/css" href="css/util.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <!--===============================================================================================-->
@@ -100,6 +101,7 @@
             <button class="login100-form-btn" type="submit">Upload</button>
           </div>
         </form>
+        <div id="snackbar">Some text some message..</div>
       </div>
     </div>
 
@@ -123,6 +125,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/web3.min.js"></script>
+    <script>
+      function showStatus(status) {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+
+        // set status
+        x.innerText = status;
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () {
+          x.className = x.className.replace("show", "");
+        }, 3000);
+      }
+    </script>
     <script>
       // Initialize Web3
       if (typeof web3 !== "undefined") {
@@ -366,7 +385,12 @@
             gas: 1000000,
           }
         );
-        console.log(status); // TODO add prompt to indicate if operation was successful
+        console.log(status);
+        if (status) {
+          showStatus("Record added successfully.");
+        } else {
+          showStatus("Error, please check that you are authorised.");
+        }
       });
     </script>
   </body>
