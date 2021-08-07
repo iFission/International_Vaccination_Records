@@ -5,18 +5,16 @@ import "../css/Chart.css";
 const Chart = ({ filteredCountry }) => {
   return (
     <div>
-      {filteredCountry.map((country, i) => {
-        return (
-          <div className="Chart" key={i}>
+          <div className="Chart" >
             <div className="total_vaccinations_chart">
               <Bar
-                key={i}
+                
                 data={{
                   labels: ["Total Vaccinations"],
                   datasets: [
                     {
-                      data: [country.total_vaccinations],
-                      label: `Total Vaccinations in ${country.country}: ${country.total_vaccinations}`,
+                      data: [filteredCountry.vaccinated],
+                      label: `Total Vaccinations in ${filteredCountry.countryName}: ${filteredCountry.vaccinated}`,
                       backgroundColor: "#e76f51",
                       borderColor: "#171717",
                       fill: true,
@@ -30,9 +28,9 @@ const Chart = ({ filteredCountry }) => {
                 }}
               />
             </div>
-            <div className="daily_vaccinations_chart">
+            {/* <div className="daily_vaccinations_chart">
               <Bar
-                key={i}
+                
                 data={{
                   labels: ["Daily Vaccinations"],
                   datasets: [
@@ -53,12 +51,10 @@ const Chart = ({ filteredCountry }) => {
                   maintainAspectRatio: false,
                 }}
               />
-            </div>
+            </div> */}
           </div>
-        );
-      })}
-    </div>
-  );
+
+    </div>)
 };
 
 export default Chart;

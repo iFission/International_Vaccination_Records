@@ -161,7 +161,7 @@ class App extends Component {
                 filteredCountry={this.state.filteredCountry}
               />
               <CountryStats filteredCountry={this.state.countryDetails} />
-              {/* <Chart filteredCountry={this.state.countryDetails} /> */}
+              <Chart filteredCountry={this.state.countryDetails} />
             </div>
       
             {/* <div className="right__screen">
