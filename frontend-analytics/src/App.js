@@ -114,25 +114,32 @@ class App extends Component {
     console.log(allCountries);
     this.setState({ allCountries: allCountries });
     const singaporeDetails = await fullContract.methods.countryAnalaytics("India").call();
-    // console.log("These are the country details");
-    var percentVaccinated = parseInt(singaporeDetails["2"])/parseInt(singaporeDetails["1"])*100;
-    var percentVaxxed = percentVaccinated.toFixed(2);
+    var percentVaccinated = calculatePercentVaxxed(singaporeDetails["2"],singaporeDetails["1"]);
     console.log("this is the percent vaccinated",percentVaccinated);
     var firstDetails = {
       countryName: singaporeDetails["0"],
       population: singaporeDetails["1"],
       vaccinated: singaporeDetails["2"],
-      percentVaxxed: percentVaxxed
+      percentVaxxed: percentVaccinated
     }
     this.setState({ countryDetails: firstDetails });
     // const countryDetails = Object.assign({}, this.state.newCtc);
     // this.setState(Object.assign(this.state.countryDetails,{countryName:singaporeDetails["0"], population:singaporeDetails["1"], vaccinated: singaporeDetails["2"]}));
     
   }
+
+  getCountryDetails = async (country) => {
+    const countryDetails = await this.state.fullContract.methods.countryAnalaytics(country).call();
+    console.log("This is the ", country, " details is from the blockchain", countryDetails);
+    var parsedCountryDetails = parseObject(countryDetails);
+    this.setState({ countryDetails: parsedCountryDetails});
+  };
   
   handleSearch = (val) => {
     // setSearchBar(val);
-    this.setState({countryDetails: val});
+    console.log("I'm changing the country to,",val);
+    this.getCountryDetails(val);
+    // this.setState({countryDetails: val});
   };
 
   constructor(props) {
@@ -180,3 +187,17 @@ class App extends Component {
 }
 export default App;
 
+function calculatePercentVaxxed (population, vaccinations) {
+  var fraction =  parseInt(population)/parseInt(vaccinations)*100;
+  return fraction.toFixed(2);
+}
+
+function parseObject (countryDetails, percentVaccinated) {
+  var firstDetails = {
+    countryName: countryDetails["0"],
+    population: countryDetails["1"],
+    vaccinated: countryDetails["2"],
+    percentVaxxed: percentVaccinated
+  };
+  return firstDetails;
+}

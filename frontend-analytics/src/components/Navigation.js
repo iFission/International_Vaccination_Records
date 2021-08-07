@@ -2,10 +2,8 @@ import React from "react";
 import "../css/Navigation.css";
 
 const Navigation = ({ handleSearch, searchBar, countries }) => {
-  // const Navigation = ({searchBar, countries }) => {
   const handleSearchResult = (e) => {
     handleSearch(e.target.value);
-    console.log("I'm handling the country change");
 
   };
   return (
@@ -24,7 +22,7 @@ const Navigation = ({ handleSearch, searchBar, countries }) => {
             onChange={handleSearchResult}
             value={searchBar}
           >
-            <option value="United States">Singapore</option>
+            {/* <option value="Singapore">Singapore</option> */}
             {
             countries.map((country, i) => (
               <option value={country} key={i}>
