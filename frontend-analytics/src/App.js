@@ -114,15 +114,16 @@ class App extends Component {
     console.log(allCountries);
     this.setState({ allCountries: allCountries });
     const singaporeDetails = await fullContract.methods.countryAnalaytics("India").call();
-    console.log("These are the country details");
+    // console.log("These are the country details");
+    var percentVaccinated = parseInt(singaporeDetails["2"])/parseInt(singaporeDetails["1"])*100;
+    var percentVaxxed = percentVaccinated.toFixed(2);
+    console.log("this is the percent vaccinated",percentVaccinated);
     var firstDetails = {
       countryName: singaporeDetails["0"],
       population: singaporeDetails["1"],
-      vaccinated: singaporeDetails["2"]
+      vaccinated: singaporeDetails["2"],
+      percentVaxxed: percentVaxxed
     }
-    console.log(singaporeDetails["0"]);
-    console.log(singaporeDetails["1"]);
-    console.log(singaporeDetails["2"]);
     this.setState({ countryDetails: firstDetails });
     // const countryDetails = Object.assign({}, this.state.newCtc);
     // this.setState(Object.assign(this.state.countryDetails,{countryName:singaporeDetails["0"], population:singaporeDetails["1"], vaccinated: singaporeDetails["2"]}));

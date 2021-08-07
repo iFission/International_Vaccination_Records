@@ -24,7 +24,7 @@ const Navigation = ({ handleSearch, searchBar, countries }) => {
             onChange={handleSearchResult}
             value={searchBar}
           >
-            <option value="United States">United States</option>
+            <option value="United States">Singapore</option>
             {
             countries.map((country, i) => (
               <option value={country} key={i}>

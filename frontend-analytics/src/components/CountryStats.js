@@ -22,6 +22,12 @@ const CountryStats = ({ filteredCountry }) => {
                 </h2>
               </div>
               <div className="vaccines">
+                <h3>Percentage Vaccinated</h3>
+                <div className="divider__line"></div>
+                <p>{filteredCountry.countryName}</p>
+                  <p>{filteredCountry.percentVaxxed}</p>
+              </div>
+              <div className="vaccines">
                 <h3>Total Vaccinations</h3>
                 <div className="divider__line"></div>
                 <p>{filteredCountry.countryName}</p>
