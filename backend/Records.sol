@@ -50,15 +50,8 @@ contract Records {
                 timestamp: block.timestamp
             });
 
-            if (analytics[country].population == 0) {
-                analytics[country] = CountryDetails({
-                    name: country,
-                    population: 10000000,
-                    totalVaccinated: 1
-                });
-            } else {
-                analytics[country].totalVaccinated += 1;
-            }
+            analytics[country].totalVaccinated += 1;
+
             return true;
         } else {
             return false;
@@ -134,6 +127,43 @@ contract Records {
 
     constructor() public {
         countryToPublicKeyMap["Singapore"] = RsaKey(5, 35);
+        countryNames.push("Singapore");
+        analytics["Singapore"] = CountryDetails({
+            name: "Singapore",
+            population: 5704000,
+            totalVaccinated: 3860000
+        });
+
+        countryToPublicKeyMap["Malaysia"] = RsaKey(5, 35);
+        countryNames.push("Malaysia");
+        analytics["Malaysia"] = CountryDetails({
+            name: "Malaysia",
+            population: 31950000,
+            totalVaccinated: 9050000
+        });
+
+        countryToPublicKeyMap["India"] = RsaKey(5, 35);
+        countryNames.push("India");
+        analytics["India"] = CountryDetails({
+            name: "India",
+            population: 1366000000,
+            totalVaccinated: 113000000
+        });
+
+        countryToPublicKeyMap["China"] = RsaKey(5, 35);
+        countryNames.push("China");
+        analytics["China"] = CountryDetails({
+            name: "China",
+            population: 1398000000,
+            totalVaccinated: 223000000
+        });
+
+        countryToPublicKeyMap["United States"] = RsaKey(5, 35);
+        analytics["United States"] = CountryDetails({
+            name: "United States",
+            population: 328200000,
+            totalVaccinated: 166650000
+        });
     }
 
     function countryAnalaytics(string memory countryName)
