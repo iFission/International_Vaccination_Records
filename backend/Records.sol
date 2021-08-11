@@ -2,7 +2,7 @@ pragma solidity >=0.7.0 <0.9.0;
 
 contract Records {
     struct Record {
-        uint256 passportNumber;
+        uint256[] passportNumber;
         string vaccineManufacturer;
         string country;
         uint256 timestamp;
@@ -19,22 +19,24 @@ contract Records {
         uint256 totalVaccinated;
     }
 
-    uint256[] passportNumbers;
-    mapping(uint256 => Record) records;
+    bytes32[] passportNumbers;
+    mapping(bytes32 => Record) records;
     mapping(string => RsaKey) countryToPublicKeyMap;
     string[] countryNames;
     mapping(string => CountryDetails) analytics;
 
     function add(
-        uint256 passportNumberEncrypted,
-        uint256 passportNumber,
+        uint256[] memory passportNumberEncrypted,
+        uint256[] memory passportNumber,
+        bytes32 passportNumberHash,
         string memory vaccineManufacturer,
         string memory country,
         uint256 clinicKeyCert,
         uint256 clinicModulusCert
     ) public payable returns (string memory) {
-        if (records[passportNumber].timestamp > 0) {
-            return "Record already exists in the blockchain and is immutable, please check that you have entered the correct passport number.";
+        if (records[passportNumberHash].timestamp > 0) {
+            return
+                "Record already exists in the blockchain and is immutable, please check that you have entered the correct passport number.";
         } else {
             if (
                 verifyClinic(
@@ -45,8 +47,8 @@ contract Records {
                     clinicModulusCert
                 )
             ) {
-                passportNumbers.push(passportNumber);
-                records[passportNumber] = Record({
+                passportNumbers.push(passportNumberHash);
+                records[passportNumberHash] = Record({
                     passportNumber: passportNumber,
                     vaccineManufacturer: vaccineManufacturer,
                     country: country,
@@ -62,21 +64,21 @@ contract Records {
         }
     }
 
-    function get(uint256 passportNumber)
+    function get(bytes32 passportNumberHash)
         public
         view
         returns (
-            uint256,
+            uint256[] memory,
             string memory,
             string memory,
             uint256
         )
     {
         return (
-            records[passportNumber].passportNumber,
-            records[passportNumber].vaccineManufacturer,
-            records[passportNumber].country,
-            records[passportNumber].timestamp
+            records[passportNumberHash].passportNumber,
+            records[passportNumberHash].vaccineManufacturer,
+            records[passportNumberHash].country,
+            records[passportNumberHash].timestamp
         );
     }
 
@@ -112,14 +114,18 @@ contract Records {
             clinicModulusCert,
             country
         );
-        
-        for (uint i = 0; i<passportNumberEncrypted.length; i++)
-        {
-            if (passportNumber[i] != computeRsa(
-            passportNumberEncrypted[i],
-            clinicPublicKey.key,
-            clinicPublicKey.modulus))
-            {return false;}
+
+        for (uint256 i = 0; i < passportNumberEncrypted.length; i++) {
+            if (
+                passportNumber[i] !=
+                computeRsa(
+                    passportNumberEncrypted[i],
+                    clinicPublicKey.key,
+                    clinicPublicKey.modulus
+                )
+            ) {
+                return false;
+            }
         }
 
         return true;
@@ -165,18 +171,26 @@ contract Records {
     function getCountryNames() public view returns (string[] memory) {
         return countryNames;
     }
-    
-    function verifyHash(uint[] memory input, bytes32 hash) public view returns (bool){
+
+    function verifyHash(uint256[] memory input, bytes32 hash)
+        public
+        view
+        returns (bool)
+    {
         return keccak256(abi.encodePacked(input)) == hash;
     }
-    
-    function getHash(uint[] memory input) public view returns (bytes32){
+
+    function getHash(uint256[] memory input) public view returns (bytes32) {
         return keccak256(abi.encodePacked(input));
     }
-    
-    function bytes32ToString(bytes32 _bytes32) public pure returns (string memory) {
+
+    function bytes32ToString(bytes32 _bytes32)
+        public
+        pure
+        returns (string memory)
+    {
         uint8 i = 0;
-        while(i < 32 && _bytes32[i] != 0) {
+        while (i < 32 && _bytes32[i] != 0) {
             i++;
         }
         bytes memory bytesArray = new bytes(i);
