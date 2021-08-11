@@ -153,200 +153,265 @@
       }
 
       var contractAbi = [
-        {
-          inputs: [],
-          stateMutability: "nonpayable",
-          type: "constructor",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "x",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "exponent",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "modulus",
-              type: "uint256",
-            },
-          ],
-          name: "computeRsa",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "clinicKeyCert",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "clinicModulusCert",
-              type: "uint256",
-            },
-            {
-              internalType: "string",
-              name: "country",
-              type: "string",
-            },
-          ],
-          name: "getClinicPublicKey",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "key",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "modulus",
-                  type: "uint256",
-                },
-              ],
-              internalType: "struct Records.RsaKey",
-              name: "",
-              type: "tuple",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "passportNumber",
-              type: "uint256",
-            },
-          ],
-          name: "retrieve",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-            {
-              internalType: "string",
-              name: "",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "",
-              type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "passportNumberEncrypted",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "passportNumber",
-              type: "uint256",
-            },
-            {
-              internalType: "string",
-              name: "vaccineManufacturer",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "country",
-              type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "clinicKeyCert",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "clinicModulusCert",
-              type: "uint256",
-            },
-          ],
-          name: "store",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "passportNumberEncrypted",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "passportNumber",
-              type: "uint256",
-            },
-            {
-              internalType: "string",
-              name: "country",
-              type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "clinicKeyCert",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "clinicModulusCert",
-              type: "uint256",
-            },
-          ],
-          name: "verifyClinic",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-      ];
-      var contractAddress = "0x6A7f74D3eD94D2522e96bB02e804A748995FC072";
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "countryName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "population",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vaccinatedNumbers",
+				"type": "uint256"
+			}
+		],
+		"name": "addCountry",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "x",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "exponent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "modulus",
+				"type": "uint256"
+			}
+		],
+		"name": "computeRsa",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "countryName",
+				"type": "string"
+			}
+		],
+		"name": "countryAnalaytics",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllCountries",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "clinicKeyCert",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clinicModulusCert",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "country",
+				"type": "string"
+			}
+		],
+		"name": "getClinicPublicKey",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "key",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "modulus",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Records.RsaKey",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "passportNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "retrieve",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "passportNumberEncrypted",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "passportNumber",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "vaccineManufacturer",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "country",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clinicKeyCert",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clinicModulusCert",
+				"type": "uint256"
+			}
+		],
+		"name": "store",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "passportNumberEncrypted",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "passportNumber",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "country",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clinicKeyCert",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clinicModulusCert",
+				"type": "uint256"
+			}
+		],
+		"name": "verifyClinic",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+      var contractAddress = "0x5FBA80Fe8CC90C50B0DE29fCa02190748219dc74";
       var contract = web3.eth.contract(contractAbi).at(contractAddress);
 
       // Set Account
@@ -374,7 +439,7 @@
         var country = $("[name=country]").val();
         console.log("country", country);
 
-        var status = contract.store.call(
+        var status = contract.store.send(
           passportNumberEncrypted,
           passportNumber,
           vaccineManufacturer,
