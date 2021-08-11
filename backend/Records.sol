@@ -25,7 +25,7 @@ contract Records {
     string[] countryNames;
     mapping(string => CountryDetails) analytics;
 
-    function store(
+    function add(
         uint256 passportNumberEncrypted,
         uint256 passportNumber,
         string memory vaccineManufacturer,
@@ -58,7 +58,7 @@ contract Records {
         }
     }
 
-    function retrieve(uint256 passportNumber)
+    function get(uint256 passportNumber)
         public
         view
         returns (
@@ -80,7 +80,7 @@ contract Records {
         uint256 clinicKeyCert,
         uint256 clinicModulusCert,
         string memory country
-    ) public view returns (RsaKey memory) {
+    ) private view returns (RsaKey memory) {
         RsaKey memory countryPublicKey = countryToPublicKeyMap[country];
         uint256 clinicKey = computeRsa(
             clinicKeyCert,
@@ -102,7 +102,7 @@ contract Records {
         string memory country,
         uint256 clinicKeyCert,
         uint256 clinicModulusCert
-    ) public view returns (bool) {
+    ) private view returns (bool) {
         RsaKey memory clinicPublicKey = getClinicPublicKey(
             clinicKeyCert,
             clinicModulusCert,
@@ -121,8 +121,41 @@ contract Records {
         uint256 x,
         uint256 exponent,
         uint256 modulus
-    ) public view returns (uint256) {
+    ) private view returns (uint256) {
         return (x**exponent) % modulus;
+    }
+
+    function getCountryAnalaytics(string memory countryName)
+        public
+        view
+        returns (
+            string memory,
+            uint256,
+            uint256
+        )
+    {
+        return (
+            analytics[countryName].name,
+            analytics[countryName].population,
+            analytics[countryName].totalVaccinated
+        );
+    }
+
+    function addCountry(
+        string memory countryName,
+        uint256 population,
+        uint256 vaccinatedNumbers
+    ) private {
+        analytics[countryName] = CountryDetails({
+            name: countryName,
+            population: population,
+            totalVaccinated: vaccinatedNumbers
+        });
+        countryNames.push(countryName);
+    }
+
+    function getCountryNames() public view returns (string[] memory) {
+        return countryNames;
     }
 
     constructor() public {
@@ -164,38 +197,5 @@ contract Records {
             population: 328200000,
             totalVaccinated: 166650000
         });
-    }
-
-    function countryAnalaytics(string memory countryName)
-        public
-        view
-        returns (
-            string memory,
-            uint256,
-            uint256
-        )
-    {
-        return (
-            analytics[countryName].name,
-            analytics[countryName].population,
-            analytics[countryName].totalVaccinated
-        );
-    }
-
-    function addCountry(
-        string memory countryName,
-        uint256 population,
-        uint256 vaccinatedNumbers
-    ) public {
-        analytics[countryName] = CountryDetails({
-            name: countryName,
-            population: population,
-            totalVaccinated: vaccinatedNumbers
-        });
-        countryNames.push(countryName);
-    }
-
-    function getAllCountries() public view returns (string[] memory) {
-        return countryNames;
     }
 }

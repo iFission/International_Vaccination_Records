@@ -124,175 +124,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "countryName",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "population",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "vaccinatedNumbers",
-				"type": "uint256"
-			}
-		],
-		"name": "addCountry",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "x",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "exponent",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "modulus",
-				"type": "uint256"
-			}
-		],
-		"name": "computeRsa",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "countryName",
-				"type": "string"
-			}
-		],
-		"name": "countryAnalaytics",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getAllCountries",
-		"outputs": [
-			{
-				"internalType": "string[]",
-				"name": "",
-				"type": "string[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "clinicKeyCert",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "clinicModulusCert",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "country",
-				"type": "string"
-			}
-		],
-		"name": "getClinicPublicKey",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "key",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "modulus",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct Records.RsaKey",
-				"name": "",
-				"type": "tuple"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "passportNumber",
-				"type": "uint256"
-			}
-		],
-		"name": "retrieve",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
 				"name": "passportNumberEncrypted",
 				"type": "uint256"
@@ -323,7 +154,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "store",
+		"name": "add",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -338,43 +169,80 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "passportNumberEncrypted",
+				"name": "passportNumber",
 				"type": "uint256"
-			},
+			}
+		],
+		"name": "get",
+		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "passportNumber",
+				"name": "",
 				"type": "uint256"
 			},
 			{
 				"internalType": "string",
-				"name": "country",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
 				"type": "string"
 			},
 			{
 				"internalType": "uint256",
-				"name": "clinicKeyCert",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "countryName",
+				"type": "string"
+			}
+		],
+		"name": "getCountryAnalaytics",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "clinicModulusCert",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "verifyClinic",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getCountryNames",
 		"outputs": [
 			{
-				"internalType": "bool",
+				"internalType": "string[]",
 				"name": "",
-				"type": "bool"
+				"type": "string[]"
 			}
 		],
 		"stateMutability": "view",
 		"type": "function"
 	}
 ];
-      var contractAddress = "0x5FBA80Fe8CC90C50B0DE29fCa02190748219dc74";
+      var contractAddress = "0xA960922e3390681F5DcabD54FDa8A95B545987cA";
       var contract = web3.eth.contract(contractAbi).at(contractAddress);
 
       // Set Account
@@ -388,7 +256,7 @@
         var passportNumber = $("[name=passportNumber]").val();
 
         var [passportNumber, vaccineManufacturer, country] =
-          contract.retrieve.call(passportNumber, {
+          contract.get.call(passportNumber, {
             gas: 1000000,
           });
         console.log("passportNumber", passportNumber);
