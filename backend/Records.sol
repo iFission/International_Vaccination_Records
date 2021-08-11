@@ -130,7 +130,7 @@ contract Records {
         uint256 x,
         uint256 exponent,
         uint256 modulus
-    ) private view returns (uint256) {
+    ) public view returns (uint256) {
         return (x**exponent) % modulus;
     }
 
@@ -196,7 +196,7 @@ contract Records {
     }
 
     constructor() public {
-        countryToPublicKeyMap["Singapore"] = RsaKey(5, 35);
+        countryToPublicKeyMap["Singapore"] = RsaKey(5, 221);
         countryNames.push("Singapore");
         analytics["Singapore"] = CountryDetails({
             name: "Singapore",
@@ -204,7 +204,7 @@ contract Records {
             totalVaccinated: 3860000
         });
 
-        countryToPublicKeyMap["Malaysia"] = RsaKey(5, 35);
+        countryToPublicKeyMap["Malaysia"] = RsaKey(5, 36);
         countryNames.push("Malaysia");
         analytics["Malaysia"] = CountryDetails({
             name: "Malaysia",
@@ -220,7 +220,7 @@ contract Records {
             totalVaccinated: 113000000
         });
 
-        countryToPublicKeyMap["China"] = RsaKey(5, 35);
+        countryToPublicKeyMap["China"] = RsaKey(5, 37);
         countryNames.push("China");
         analytics["China"] = CountryDetails({
             name: "China",
@@ -228,7 +228,7 @@ contract Records {
             totalVaccinated: 223000000
         });
 
-        countryToPublicKeyMap["United States"] = RsaKey(5, 35);
+        countryToPublicKeyMap["United States"] = RsaKey(5, 50);
         analytics["United States"] = CountryDetails({
             name: "United States",
             population: 328200000,

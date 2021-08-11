@@ -387,15 +387,15 @@
           type: "function",
         },
       ];
-      var contractAddress = "0x8145B6b346E8226a40955DAFe0e861AEc8f451a8";
+      var contractAddress = "0x1E14F44B3b86DAd049E46C195C03B9257C28C1aE";
       var contract = new web3.eth.Contract(contractAbi, contractAddress);
 
       // credentials
-      var clinicPrivateKey = 3;
-      var clinicModulus = 33;
+      var clinicPrivateKey = 29;
+      var clinicModulus = 91;
 
-      var clinicKeyCert = 7;
-      var clinicModulusCert = 3;
+      var clinicKeyCert = 122;
+      var clinicModulusCert = 78;
 
       // add record
       $("form").on("submit", function (event) {
@@ -411,7 +411,10 @@
         var passportNumberEncrypted = [];
         passportNumber.split("").map((e) => {
           passportNumberEncrypted.push(
-            parseInt(e ** clinicPrivateKey % clinicModulus)
+            parseInt(
+              BigInt(e) ** BigInt(clinicPrivateKey) % BigInt(clinicModulus)
+            )
+            // parseInt(e ** clinicPrivateKey % clinicModulus)
           );
         });
         console.log("passportNumberEncrypted", passportNumberEncrypted);
@@ -430,7 +433,7 @@
             clinicKeyCert,
             clinicModulusCert
           )
-          .call()
+          .call({ gas: 1000000 })
           .then((output) => {
             console.log(output);
             status = output;
