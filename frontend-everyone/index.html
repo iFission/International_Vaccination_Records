@@ -82,7 +82,49 @@
           </div>
         </form>
       </div>
-    </div>
+        <div class="row container d-flex justify-content-center">
+            <div class="col-xl-6 col-md-12">
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-8">
+                            <div class="card-block">
+                              <h6 class="details-box-title m-b-20 p-b-5 b-b-default f-w-600">Passport Number</h6>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <p class="details-box-subtitle m-b-10 f-w-600"id="passportNumber">S2034918</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <h6 class="details-box-title m-b-20 p-b-5 b-b-default f-w-600">Vaccination Details</h6>
+                                <div class="row">
+                                  <div class="col-sm">
+                                      <p class="details-box-subtitle m-b-10 f-w-600">Manufacturer</p>
+                                      <h6 class="details-box-comment m-b-20 f-w-400" id="vaccineManufacturer">Pfizer</h6>
+                                  </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col-sm">
+                                    <p class="details-box-subtitle m-b-10 f-w-600">Country Administered</p>
+                                    <h6 class="details-box-comment m-b-20 f-w-400" id="countryAdministered">Singapore</h6>
+                                  </div>
+                                </div>
+                                <br>
+
+                                <div class="row">
+                                  <div class="col-sm">
+                                    <p class="details-box-subtitle m-b-10 f-w-600">Date Administered</p>
+                                    <h6 class="details-box-comment m-b-20 f-w-400" id="dateAdministered">like today</h6>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+  </div>
 
     <div id="dropDownSelect1"></div>
 
@@ -242,7 +284,7 @@
 		"type": "function"
 	}
 ];
-      var contractAddress = "0xA960922e3390681F5DcabD54FDa8A95B545987cA";
+      var contractAddress = "0x1eD5Dd4C220bbFB670f1d4Bf7f2F21170DBde390";
       var contract = web3.eth.contract(contractAbi).at(contractAddress);
 
       // Set Account
@@ -253,12 +295,16 @@
       // view record
       $("form").on("submit", function (event) {
         event.preventDefault();
-        var passportNumber = $("[name=passportNumber]").val();
+        var passportNumber = parseInt($("[name=passportNumber]").val());
 
         var [passportNumber, vaccineManufacturer, country] =
           contract.get.call(passportNumber, {
             gas: 1000000,
           });
+
+        document.getElementById("passportNumber").innerHTML = passportNumber;
+        document.getElementById("vaccineManufacturer").innerHTML = vaccineManufacturer;
+        document.getElementById("countryAdministered").innerHTML = country;
         console.log("passportNumber", passportNumber);
         console.log("vaccineManufacturer", vaccineManufacturer);
         console.log("country", country);
