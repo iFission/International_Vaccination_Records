@@ -215,15 +215,15 @@ iframe {
 .details-box-title {
   display: block;
   font-family: SourceSansPro-Bold;
-  font-size: 30px;
-  color: #4b2354;
+  font-size: 24px;
+  color: #837586;
   line-height: 1.2;
 }
 
 .details-box-subtitle {
   display: block;
   font-family: SourceSansPro-Bold;
-  font-size: 24px;
+  font-size: 30px;
   color: #5c0c6e;
   line-height: 1.2;
 }

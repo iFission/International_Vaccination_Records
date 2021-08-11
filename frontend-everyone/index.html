@@ -98,23 +98,23 @@
                                 <h6 class="details-box-title m-b-20 p-b-5 b-b-default f-w-600">Vaccination Details</h6>
                                 <div class="row">
                                   <div class="col-sm">
-                                      <p class="details-box-subtitle m-b-10 f-w-600">Manufacturer</p>
-                                      <h6 class="details-box-comment m-b-20 f-w-400" id="vaccineManufacturer">Pfizer</h6>
+                                      <p class="details-box-title m-b-10 f-w-600">Manufacturer</p>
+                                      <h6 class="details-box-subtitle m-b-20 f-w-400" id="vaccineManufacturer">Pfizer</h6>
                                   </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                   <div class="col-sm">
-                                    <p class="details-box-subtitle m-b-10 f-w-600">Country Administered</p>
-                                    <h6 class="details-box-comment m-b-20 f-w-400" id="countryAdministered">Singapore</h6>
+                                    <p class="details-box-title m-b-10 f-w-600">Country Administered</p>
+                                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="countryAdministered">Singapore</h6>
                                   </div>
                                 </div>
                                 <br>
 
                                 <div class="row">
                                   <div class="col-sm">
-                                    <p class="details-box-subtitle m-b-10 f-w-600">Date Administered</p>
-                                    <h6 class="details-box-comment m-b-20 f-w-400" id="dateAdministered">like today</h6>
+                                    <p class="details-box-title m-b-10 f-w-600">Date Administered</p>
+                                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="dateAdministered">like today</h6>
                                   </div>
                                 </div>
                             </div>
@@ -292,12 +292,17 @@
       console.log(web3.eth.accounts[1]);
       console.log(contract);
 
+      function unixToDate(unixTime){
+        var date = new Date(unixTime * 1000);
+        return date.toLocaleString("en-US");
+      };
+
       // view record
       $("form").on("submit", function (event) {
         event.preventDefault();
         var passportNumber = parseInt($("[name=passportNumber]").val());
 
-        var [passportNumber, vaccineManufacturer, country] =
+        var [passportNumber, vaccineManufacturer, country, dateAdministered] =
           contract.get.call(passportNumber, {
             gas: 1000000,
           });
@@ -305,9 +310,9 @@
         document.getElementById("passportNumber").innerHTML = passportNumber;
         document.getElementById("vaccineManufacturer").innerHTML = vaccineManufacturer;
         document.getElementById("countryAdministered").innerHTML = country;
-        console.log("passportNumber", passportNumber);
-        console.log("vaccineManufacturer", vaccineManufacturer);
-        console.log("country", country);
+
+        var readableDate = unixToDate(dateAdministered);
+        document.getElementById("dateAdministered").innerHTML = readableDate;
       });
     </script>
   </body>
