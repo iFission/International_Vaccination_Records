@@ -6,6 +6,11 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -26,6 +31,35 @@
 				"name": "addCountry",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "exponent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "modulus",
+						"type": "uint256"
+					}
+				],
+				"name": "computeRsa",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -73,17 +107,58 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "clinicKeyCert",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "clinicModulusCert",
+						"type": "uint256"
+					},
+					{
 						"internalType": "string",
-						"name": "passportNumber",
+						"name": "country",
 						"type": "string"
+					}
+				],
+				"name": "getClinicPublicKey",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "key",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "modulus",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Records.RsaKey",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "passportNumber",
+						"type": "uint256"
 					}
 				],
 				"name": "retrieve",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "",
-						"type": "string"
+						"type": "uint256"
 					},
 					{
 						"internalType": "string",
@@ -107,9 +182,14 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
+						"name": "passportNumberEncrypted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "passportNumber",
-						"type": "string"
+						"type": "uint256"
 					},
 					{
 						"internalType": "string",
@@ -120,11 +200,66 @@
 						"internalType": "string",
 						"name": "country",
 						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "clinicKeyCert",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "clinicModulusCert",
+						"type": "uint256"
 					}
 				],
 				"name": "store",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "passportNumberEncrypted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "passportNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "country",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "clinicKeyCert",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "clinicModulusCert",
+						"type": "uint256"
+					}
+				],
+				"name": "verifyClinic",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -156,10 +291,10 @@
 	},
 	"sources": {
 		"Records.sol": {
-			"keccak256": "0xc7a717dcd4e7307b09f5637371683a621b9a559b39c072e3dd9d40e44d81a71c",
+			"keccak256": "0x0307ac155748969c2ec0b0b9b28f4a91728f1f8788039957072bd17797d07816",
 			"urls": [
-				"bzz-raw://9f078c5c91558f6ee2f284264a93b33179791add1bfd6c5d38fdbb11e569cb4e",
-				"dweb:/ipfs/QmW44kQNjjY6AnJQhUL1qx128RrswMmrWrmBgxet5KwGhP"
+				"bzz-raw://fe1667fa0e8eb2dbeaab5e872ac2a1d87a22f3aa182f6cd58a854d251c522f38",
+				"dweb:/ipfs/QmW8HotijU9CHzvKNSbtJUHLXhU9fdzQgxHFTx8HmEVi87"
 			]
 		}
 	},

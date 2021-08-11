@@ -51,10 +51,12 @@
       href="vendor/daterangepicker/daterangepicker.css"
     />
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/snackbar.css" />
     <link rel="stylesheet" type="text/css" href="css/util.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <!--===============================================================================================-->
   </head>
+
   <body>
     <div
       class="container-login100"
@@ -63,7 +65,7 @@
       <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
         <form class="login100-form" role="form">
           <span class="login100-form-title p-b-37">
-            View Vaccination Details
+            Upload Vaccination Details
           </span>
 
           <div class="wrap-input100 m-b-20">
@@ -76,16 +78,34 @@
             <span class="focus-input100"></span>
           </div>
 
+          <div class="wrap-input100 m-b-25">
+            <input
+              class="input100"
+              name="vaccineManufacturer"
+              placeholder="Vaccine Manufacturer"
+            />
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 m-b-20">
+            <input
+              class="input100"
+              type="text"
+              name="country"
+              placeholder="Country administered"
+            />
+            <span class="focus-input100"></span>
+          </div>
+
           <div class="container-login100-form-btn">
             <button class="login100-form-btn" type="submit">Upload</button>
           </div>
-
         </form>
+        <div id="snackbar">Some text some message..</div>
       </div>
     </div>
 
     <div id="dropDownSelect1"></div>
-
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
@@ -106,6 +126,23 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/web3.min.js"></script>
     <script>
+      function showStatus(status) {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+
+        // set status
+        x.innerText = status;
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () {
+          x.className = x.className.replace("show", "");
+        }, 3000);
+      }
+    </script>
+    <script>
       // Initialize Web3
       if (typeof web3 !== "undefined") {
         web3 = new Web3(web3.currentProvider);
@@ -117,19 +154,94 @@
 
       var contractAbi = [
         {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
           inputs: [
             {
+              internalType: "uint256",
+              name: "x",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "exponent",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "modulus",
+              type: "uint256",
+            },
+          ],
+          name: "computeRsa",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "clinicKeyCert",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "clinicModulusCert",
+              type: "uint256",
+            },
+            {
               internalType: "string",
-              name: "passportNumber",
+              name: "country",
               type: "string",
+            },
+          ],
+          name: "getClinicPublicKey",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "key",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "modulus",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct Records.RsaKey",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "passportNumber",
+              type: "uint256",
             },
           ],
           name: "retrieve",
           outputs: [
             {
-              internalType: "string",
+              internalType: "uint256",
               name: "",
-              type: "string",
+              type: "uint256",
             },
             {
               internalType: "string",
@@ -153,9 +265,14 @@
         {
           inputs: [
             {
-              internalType: "string",
+              internalType: "uint256",
+              name: "passportNumberEncrypted",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
               name: "passportNumber",
-              type: "string",
+              type: "uint256",
             },
             {
               internalType: "string",
@@ -167,35 +284,114 @@
               name: "country",
               type: "string",
             },
+            {
+              internalType: "uint256",
+              name: "clinicKeyCert",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "clinicModulusCert",
+              type: "uint256",
+            },
           ],
           name: "store",
-          outputs: [],
-          stateMutability: "nonpayable",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "passportNumberEncrypted",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "passportNumber",
+              type: "uint256",
+            },
+            {
+              internalType: "string",
+              name: "country",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "clinicKeyCert",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "clinicModulusCert",
+              type: "uint256",
+            },
+          ],
+          name: "verifyClinic",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
       ];
-      var contractAddress = "0x05783419353a142565af0A58b201560d03b5087A";
+      var contractAddress = "0x6A7f74D3eD94D2522e96bB02e804A748995FC072";
       var contract = web3.eth.contract(contractAbi).at(contractAddress);
 
       // Set Account
       web3.eth.defaultAccount = web3.eth.accounts[1];
       console.log(web3.eth.accounts[1]);
 
+      // credentials
+      var clinicPrivateKey = 3;
+      var clinicModulus = 33;
+
+      var clinicKeyCert = 7;
+      var clinicModulusCert = 3;
+
       // add record
       $("form").on("submit", function (event) {
         event.preventDefault();
         var passportNumber = $("[name=passportNumber]").val();
         console.log("passportNumber", passportNumber);
+
+        var passportNumberEncrypted =
+          passportNumber ** clinicPrivateKey % clinicModulus;
+
         var vaccineManufacturer = $("[name=vaccineManufacturer]").val();
         console.log("vaccineManufacturer", vaccineManufacturer);
         var country = $("[name=country]").val();
         console.log("country", country);
 
-        contract.store(passportNumber, vaccineManufacturer, country, {
-          gas: 1000000,
-        });
+        var status = contract.store.call(
+          passportNumberEncrypted,
+          passportNumber,
+          vaccineManufacturer,
+          country,
+          clinicKeyCert,
+          clinicModulusCert,
+          {
+            gas: 1000000,
+          }
+        );
+        console.log(status);
+        if (status) {
+          showStatus("Record added successfully.");
+        } else {
+          showStatus("Error, please check that you are authorised.");
+        }
       });
-
     </script>
   </body>
 </html>
