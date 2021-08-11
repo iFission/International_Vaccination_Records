@@ -27,7 +27,6 @@ contract Records {
 
     function add(
         uint256[] memory passportNumberEncrypted,
-        uint256[] memory passportNumber,
         bytes32 passportNumberHash,
         string memory vaccineManufacturer,
         string memory country,
@@ -38,18 +37,16 @@ contract Records {
             return
                 "Record already exists in the blockchain and is immutable, please check that you have entered the correct passport number.";
         } else {
-            if (
-                verifyClinic(
-                    passportNumberEncrypted,
-                    passportNumber,
-                    country,
-                    clinicKeyCert,
-                    clinicModulusCert
-                )
-            ) {
+            uint256[] memory passportNumberDecrypted = decryptPassportNumber(
+                passportNumberEncrypted,
+                country,
+                clinicKeyCert,
+                clinicModulusCert
+            );
+            if (verifyHash(passportNumberDecrypted, passportNumberHash)) {
                 passportNumbers.push(passportNumberHash);
                 records[passportNumberHash] = Record({
-                    passportNumber: passportNumber,
+                    passportNumber: passportNumberDecrypted,
                     vaccineManufacturer: vaccineManufacturer,
                     country: country,
                     timestamp: block.timestamp
@@ -102,33 +99,31 @@ contract Records {
         return clinicPublicKey;
     }
 
-    function verifyClinic(
+    function decryptPassportNumber(
         uint256[] memory passportNumberEncrypted,
-        uint256[] memory passportNumber,
         string memory country,
         uint256 clinicKeyCert,
         uint256 clinicModulusCert
-    ) public view returns (bool) {
+    ) public view returns (uint256[] memory) {
         RsaKey memory clinicPublicKey = getClinicPublicKey(
             clinicKeyCert,
             clinicModulusCert,
             country
         );
 
+        uint256[] memory passportNumberDecrypted = new uint256[](
+            passportNumberEncrypted.length
+        );
+
         for (uint256 i = 0; i < passportNumberEncrypted.length; i++) {
-            if (
-                passportNumber[i] !=
-                computeRsa(
-                    passportNumberEncrypted[i],
-                    clinicPublicKey.key,
-                    clinicPublicKey.modulus
-                )
-            ) {
-                return false;
-            }
+            passportNumberDecrypted[i] = computeRsa(
+                passportNumberEncrypted[i],
+                clinicPublicKey.key,
+                clinicPublicKey.modulus
+            );
         }
 
-        return true;
+        return passportNumberDecrypted;
     }
 
     function computeRsa(
