@@ -319,10 +319,31 @@
             clinicKeyCert,
             clinicModulusCert
           )
-          .send({ from: accountSelected })
-          .then((output) => console.log(output));
-        console.log(status);
-        showStatus(status);
+          .call()
+          .then((output) => {
+            console.log(output);
+            status = output;
+
+            if (status == "Record added successfully.") {
+              contract.methods
+                .add(
+                  passportNumberEncrypted,
+                  passportNumber,
+                  vaccineManufacturer,
+                  country,
+                  clinicKeyCert,
+                  clinicModulusCert
+                )
+                .send({ from: accountSelected })
+                .then((output) => {
+                  console.log(output);
+                  console.log(status);
+                  showStatus(status);
+                });
+            } else {
+              showStatus(status);
+            }
+          });
       });
     </script>
   </body>
