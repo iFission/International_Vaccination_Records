@@ -1,334 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>International Vaccine Records</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
-    <!--===============================================================================================-->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="vendor/bootstrap/css/bootstrap.min.css"
-    />
-    <!--===============================================================================================-->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"
-    />
-    <!--===============================================================================================-->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="fonts/iconic/css/material-design-iconic-font.min.css"
-    />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
-    <!--===============================================================================================-->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="vendor/css-hamburgers/hamburgers.min.css"
-    />
-    <!--===============================================================================================-->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="vendor/animsition/css/animsition.min.css"
-    />
-    <!--===============================================================================================-->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="vendor/select2/select2.min.css"
-    />
-    <!--===============================================================================================-->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="vendor/daterangepicker/daterangepicker.css"
-    />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/util.css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <!--===============================================================================================-->
-  </head>
 
-  <body>
-    <div
-      class="container-login100"
-      style="background-image: url('images/bg-01.jpg')"
-    >
-      <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-        <form class="login100-form" role="form">
-          <span class="login100-form-title p-b-37">
-            View Vaccination Details
-          </span>
+<head>
+  <title>International Vaccine Records</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="css/util.css" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <!--===============================================================================================-->
+</head>
 
-          <div class="wrap-input100 m-b-20">
-            <input
-              class="input100"
-              type="text"
-              name="passportNumber"
-              placeholder="Passport Number"
-            />
-            <span class="focus-input100"></span>
-          </div>
+<body>
+  <div class="container-login100" style="background-image: url('images/bg-01.jpg')">
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+      <form class="login100-form" role="form">
+        <span class="login100-form-title p-b-37">
+          View Vaccination Details
+        </span>
 
-          <div class="container-login100-form-btn">
-            <button class="login100-form-btn" type="submit">Search</button>
-          </div>
-        </form>
-      </div>
-        <div class="row container d-flex justify-content-center">
-            <div class="col-xl-6 col-md-12">
-                <div class="card user-card-full">
-                    <div class="row m-l-0 m-r-0">
-                        <div class="col-sm-8">
-                            <div class="card-block">
-                              <h6 class="details-box-title m-b-20 p-b-5 b-b-default f-w-600">Passport Number</h6>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <p class="details-box-subtitle m-b-10 f-w-600"id="passportNumber"></p>
-                                    </div>
-                                </div>
-                                <br>
-                                <h6 class="details-box-title m-b-20 p-b-5 b-b-default f-w-600">Vaccination Details</h6>
-                                <div class="row">
-                                  <div class="col-sm">
-                                      <p class="details-box-title m-b-10 f-w-600">Manufacturer</p>
-                                      <h6 class="details-box-subtitle m-b-20 f-w-400" id="vaccineManufacturer"> </h6>
-                                  </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                  <div class="col-sm">
-                                    <p class="details-box-title m-b-10 f-w-600">Country Administered</p>
-                                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="countryAdministered"> </h6>
-                                  </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
-                                  <div class="col-sm">
-                                    <p class="details-box-title m-b-10 f-w-600">Date Administered</p>
-                                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="dateAdministered"> </h6>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="wrap-input100 m-b-20">
+          <input class="input100" type="text" name="passportNumber" placeholder="Passport Number" />
+          <span class="focus-input100"></span>
         </div>
-    </div>      
+
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+    <div class="row container d-flex justify-content-center">
+      <div class="col-xl-6 col-md-12">
+        <div class="card user-card-full">
+          <div class="row m-l-0 m-r-0">
+            <div class="col-sm-8">
+              <div class="card-block">
+                <h6 class="details-box-title m-b-20 p-b-5 b-b-default f-w-600">Passport Number</h6>
+                <div class="row">
+                  <div class="col-sm">
+                    <p class="details-box-subtitle m-b-10 f-w-600" id="passportNumber"></p>
+                  </div>
+                </div>
+                <br>
+                <h6 class="details-box-title m-b-20 p-b-5 b-b-default f-w-600">Vaccination Details</h6>
+                <div class="row">
+                  <div class="col-sm">
+                    <p class="details-box-title m-b-10 f-w-600">Manufacturer</p>
+                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="vaccineManufacturer"> </h6>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-sm">
+                    <p class="details-box-title m-b-10 f-w-600">Country Administered</p>
+                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="countryAdministered"> </h6>
+                  </div>
+                </div>
+                <br>
+
+                <div class="row">
+                  <div class="col-sm">
+                    <p class="details-box-title m-b-10 f-w-600">Date Administered</p>
+                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="dateAdministered"> </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 
-    <div id="dropDownSelect1"></div>
+  <div id="dropDownSelect1"></div>
 
-    <!--===============================================================================================-->
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/bootstrap/js/popper.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/daterangepicker/moment.min.js"></script>
-    <script src="vendor/daterangepicker/daterangepicker.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/countdowntime/countdowntime.js"></script>
-    <!--===============================================================================================-->
-    <script src="js/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script>
-      // Initialize Web3
-      if (typeof web3 !== "undefined") {
-        web3 = new Web3(web3.currentProvider);
-      } else {
-        web3 = new Web3(
-          new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/c3227d15f0c646389187f06ae2167132")
-        );
-      }
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/daterangepicker/moment.min.js"></script>
+  <script src="vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+  <script src="js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script>
+    // Initialize Web3
+    const web3 = new Web3(window.ethereum || "http://localhost:8545");
 
-      var currentProvider = web3.currentProvider.host;
-      console.log("currentProvider", currentProvider);
+    if (window.ethereum) {
+      var accountSelected;
 
-      var blockNumber = web3.eth.blockNumber;
-      console.log("blockNumber", blockNumber);
+      window.ethereum
+        .enable()
+        .then(function (accounts) {
+          accountSelected = accounts[0];
+          console.log("accountSelected", accountSelected);
+          console.log(accounts);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
 
-      var contractAbi = [
-        {
-          inputs: [],
-          stateMutability: "nonpayable",
-          type: "constructor",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "passportNumberEncrypted",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "passportNumber",
-              type: "uint256",
-            },
-            {
-              internalType: "string",
-              name: "vaccineManufacturer",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "country",
-              type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "clinicKeyCert",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "clinicModulusCert",
-              type: "uint256",
-            },
-          ],
-          name: "add",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "passportNumber",
-              type: "uint256",
-            },
-          ],
-          name: "get",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-            {
-              internalType: "string",
-              name: "",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "",
-              type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "string",
-              name: "countryName",
-              type: "string",
-            },
-          ],
-          name: "getCountryAnalaytics",
-          outputs: [
-            {
-              internalType: "string",
-              name: "",
-              type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getCountryNames",
-          outputs: [
-            {
-              internalType: "string[]",
-              name: "",
-              type: "string[]",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-      ];
-      var contractAddress = "0xf5f6a0a915f0Ff38F737884754BD459c24c2Ae68";
-      var contract = web3.eth.contract(contractAbi).at(contractAddress);
+    var contractAbi = [
+      {
+        inputs: [],
+        stateMutability: "nonpayable",
+        type: "constructor",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256[]",
+            name: "passportNumberEncrypted",
+            type: "uint256[]",
+          },
+          {
+            internalType: "bytes32",
+            name: "passportNumberHash",
+            type: "bytes32",
+          },
+          {
+            internalType: "string",
+            name: "vaccineManufacturer",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "country",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "clinicKeyCert",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "clinicModulusCert",
+            type: "uint256",
+          },
+        ],
+        name: "add",
+        outputs: [
+          {
+            internalType: "string",
+            name: "",
+            type: "string",
+          },
+        ],
+        stateMutability: "payable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bytes32",
+            name: "_bytes32",
+            type: "bytes32",
+          },
+        ],
+        name: "bytes32ToString",
+        outputs: [
+          {
+            internalType: "string",
+            name: "",
+            type: "string",
+          },
+        ],
+        stateMutability: "pure",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256[]",
+            name: "passportNumberEncrypted",
+            type: "uint256[]",
+          },
+          {
+            internalType: "string",
+            name: "country",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "clinicKeyCert",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "clinicModulusCert",
+            type: "uint256",
+          },
+        ],
+        name: "decryptPassportNumber",
+        outputs: [
+          {
+            internalType: "uint256[]",
+            name: "",
+            type: "uint256[]",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bytes32",
+            name: "passportNumberHash",
+            type: "bytes32",
+          },
+        ],
+        name: "get",
+        outputs: [
+          {
+            internalType: "uint256[]",
+            name: "",
+            type: "uint256[]",
+          },
+          {
+            internalType: "string",
+            name: "",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "string",
+            name: "countryName",
+            type: "string",
+          },
+        ],
+        name: "getCountryAnalaytics",
+        outputs: [
+          {
+            internalType: "string",
+            name: "",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "getCountryNames",
+        outputs: [
+          {
+            internalType: "string[]",
+            name: "",
+            type: "string[]",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256[]",
+            name: "input",
+            type: "uint256[]",
+          },
+        ],
+        name: "getHash",
+        outputs: [
+          {
+            internalType: "bytes32",
+            name: "",
+            type: "bytes32",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256[]",
+            name: "input",
+            type: "uint256[]",
+          },
+          {
+            internalType: "bytes32",
+            name: "hash",
+            type: "bytes32",
+          },
+        ],
+        name: "verifyHash",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+    ];
+    var contractAddress = "0x8145B6b346E8226a40955DAFe0e861AEc8f451a8";
+    var contract = new web3.eth.Contract(contractAbi, contractAddress);
 
-      // Set Account
-      web3.eth.defaultAccount = web3.eth.accounts[1];
-      console.log(web3.eth.accounts[1]);
-      console.log(contract);
+    // Set Account
+    web3.eth.defaultAccount = web3.eth.accounts[1];
+    console.log(web3.eth.accounts[1]);
+    console.log(contract);
 
-      function unixToDate(unixTime){
-        var date = new Date(unixTime * 1000);
-        var formattedDate = date.getFullYear().toString()+"/"+(date.getMonth()+1).toString()+"/"+(date.getDate()).toString();
-        return formattedDate;
-        // return date.toISOString();
-      };
+    function unixToDate(unixTime) {
+      var date = new Date(unixTime * 1000);
+      var formattedDate = date.getFullYear().toString() + "/" + (date.getMonth() + 1).toString() + "/" + (date.getDate()).toString();
+      return formattedDate;
+      // return date.toISOString();
+    };
 
-      function weeks_between(dateAdministered) {
-        var ONE_WEEK = 60 * 60 * 24 * 7;
-        var currentDate = Date.now()/1000;
-        var difference_ms = Math.abs(currentDate - dateAdministered);
-        return Math.floor(difference_ms / ONE_WEEK);
-      }
+    function weeks_between(dateAdministered) {
+      var ONE_WEEK = 60 * 60 * 24 * 7;
+      var currentDate = Date.now() / 1000;
+      var difference_ms = Math.abs(currentDate - dateAdministered);
+      return Math.floor(difference_ms / ONE_WEEK);
+    }
 
-      // view record
-      $("form").on("submit", function (event) {
-        event.preventDefault();
-        var passportNumber = parseInt($("[name=passportNumber]").val());
+    // view record
+    $("form").on("submit", function (event) {
+      event.preventDefault();
+      var passportNumber = $("[name=passportNumber]").val();
 
-        var [passportNumber, vaccineManufacturer, country, dateAdministered] =
-          contract.get.call(passportNumber, {
-            gas: 1000000,
-          });
+      var passportNumberHash = web3.utils.soliditySha3({ type: 'uint256[]', value: passportNumber.split("").map(e => parseInt(e)) });
+      console.log("passportNumberHash", passportNumberHash);
+
+      contract.methods.get(passportNumberHash).call({
+        gas: 1000000,
+      }).then((output) => {
+        passportNumber = output[0].join("");
+        vaccineManufacturer = output[1];
+        country = output[2];
+        dateAdministered = output[3];
 
         document.getElementById("passportNumber").innerHTML = passportNumber;
         document.getElementById("vaccineManufacturer").innerHTML = vaccineManufacturer;
         document.getElementById("countryAdministered").innerHTML = country;
 
         var readableDate = unixToDate(dateAdministered);
-        document.getElementById("dateAdministered").innerHTML = readableDate+ " ("+weeks_between(dateAdministered)+" weeks ago)";
+        document.getElementById("dateAdministered").innerHTML = readableDate + " (" + weeks_between(dateAdministered) + " weeks ago)";
       });
-    </script>
-  </body>
+
+    });
+  </script>
+</body>
+
 </html>
