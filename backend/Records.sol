@@ -101,24 +101,28 @@ contract Records {
     }
 
     function verifyClinic(
-        uint256 passportNumberEncrypted,
-        uint256 passportNumber,
+        uint256[] memory passportNumberEncrypted,
+        uint256[] memory passportNumber,
         string memory country,
         uint256 clinicKeyCert,
         uint256 clinicModulusCert
-    ) private view returns (bool) {
+    ) public view returns (bool) {
         RsaKey memory clinicPublicKey = getClinicPublicKey(
             clinicKeyCert,
             clinicModulusCert,
             country
         );
-        uint256 passportNumberDecrypted = computeRsa(
-            passportNumberEncrypted,
+        
+        for (uint i = 0; i<passportNumberEncrypted.length; i++)
+        {
+            if (passportNumber[i] != computeRsa(
+            passportNumberEncrypted[i],
             clinicPublicKey.key,
-            clinicPublicKey.modulus
-        );
+            clinicPublicKey.modulus))
+            {return false;}
+        }
 
-        return passportNumberDecrypted == passportNumber;
+        return true;
     }
 
     function computeRsa(
