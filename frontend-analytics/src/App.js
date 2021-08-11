@@ -113,7 +113,7 @@ class App extends Component {
     const allCountries = await fullContract.methods.getAllCountries().call();
     console.log(allCountries);
     this.setState({ allCountries: allCountries });
-    const singaporeDetails = await fullContract.methods.countryAnalaytics("India").call();
+    const singaporeDetails = await fullContract.methods.countryAnalaytics("Singapore").call();
     var percentVaccinated = calculatePercentVaxxed(singaporeDetails["2"],singaporeDetails["1"]);
     console.log("this is the percent vaccinated",percentVaccinated);
     var firstDetails = {
@@ -131,7 +131,8 @@ class App extends Component {
   getCountryDetails = async (country) => {
     const countryDetails = await this.state.fullContract.methods.countryAnalaytics(country).call();
     console.log("This is the ", country, " details is from the blockchain", countryDetails);
-    var parsedCountryDetails = parseObject(countryDetails);
+    var percentVaccinated = calculatePercentVaxxed(countryDetails["2"],countryDetails["1"]);
+    var parsedCountryDetails = parseObject(countryDetails,percentVaccinated);
     this.setState({ countryDetails: parsedCountryDetails});
   };
   
