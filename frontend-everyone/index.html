@@ -153,138 +153,144 @@
         web3 = new Web3(web3.currentProvider);
       } else {
         web3 = new Web3(
-          new Web3.providers.HttpProvider("http://localhost:8545")
+          new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/c3227d15f0c646389187f06ae2167132")
         );
       }
 
+      var currentProvider = web3.currentProvider.host;
+      console.log("currentProvider", currentProvider);
+
+      var blockNumber = web3.eth.blockNumber;
+      console.log("blockNumber", blockNumber);
+
       var contractAbi = [
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "passportNumberEncrypted",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "passportNumber",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "vaccineManufacturer",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "country",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "clinicKeyCert",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "clinicModulusCert",
-				"type": "uint256"
-			}
-		],
-		"name": "add",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "passportNumber",
-				"type": "uint256"
-			}
-		],
-		"name": "get",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "countryName",
-				"type": "string"
-			}
-		],
-		"name": "getCountryAnalaytics",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getCountryNames",
-		"outputs": [
-			{
-				"internalType": "string[]",
-				"name": "",
-				"type": "string[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-];
-      var contractAddress = "0x1eD5Dd4C220bbFB670f1d4Bf7f2F21170DBde390";
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "passportNumberEncrypted",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "passportNumber",
+              type: "uint256",
+            },
+            {
+              internalType: "string",
+              name: "vaccineManufacturer",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "country",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "clinicKeyCert",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "clinicModulusCert",
+              type: "uint256",
+            },
+          ],
+          name: "add",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "passportNumber",
+              type: "uint256",
+            },
+          ],
+          name: "get",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "countryName",
+              type: "string",
+            },
+          ],
+          name: "getCountryAnalaytics",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getCountryNames",
+          outputs: [
+            {
+              internalType: "string[]",
+              name: "",
+              type: "string[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ];
+      var contractAddress = "0xf5f6a0a915f0Ff38F737884754BD459c24c2Ae68";
       var contract = web3.eth.contract(contractAbi).at(contractAddress);
 
       // Set Account
