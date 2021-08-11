@@ -46,9 +46,9 @@
 				"name": "add",
 				"outputs": [
 					{
-						"internalType": "bool",
+						"internalType": "string",
 						"name": "",
-						"type": "bool"
+						"type": "string"
 					}
 				],
 				"stateMutability": "payable",
@@ -159,10 +159,10 @@
 	},
 	"sources": {
 		"Records.sol": {
-			"keccak256": "0x47bbf479a3050266edb26712f6de636f1d88d3989fc77c690f4767d094285ecf",
+			"keccak256": "0x6dfd8fb2e9ac78990b98d47d943df41fb1071e59c1e2d2d792c5741091846c72",
 			"urls": [
-				"bzz-raw://f10f3c50038cd3d92e3e5de56bed19319ca7c15e183f422ef8680477421dea2f",
-				"dweb:/ipfs/QmYeqsJUepL7gTMCzSJ5uWQbwHcAqEwzUa4u3nwouEhG7q"
+				"bzz-raw://dc3c70a91ca218c93908ae05931175a51faf5e224d936d09f8564aa1ba1ae615",
+				"dweb:/ipfs/QmPWb8a4fyuMEDs6Fufbg3aPLbCaiA2cf165mQbUwweCez"
 			]
 		}
 	},
