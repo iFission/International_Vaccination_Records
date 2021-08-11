@@ -91,7 +91,7 @@
                               <h6 class="details-box-title m-b-20 p-b-5 b-b-default f-w-600">Passport Number</h6>
                                 <div class="row">
                                     <div class="col-sm">
-                                        <p class="details-box-subtitle m-b-10 f-w-600"id="passportNumber">S2034918</p>
+                                        <p class="details-box-subtitle m-b-10 f-w-600"id="passportNumber"></p>
                                     </div>
                                 </div>
                                 <br>
@@ -99,14 +99,14 @@
                                 <div class="row">
                                   <div class="col-sm">
                                       <p class="details-box-title m-b-10 f-w-600">Manufacturer</p>
-                                      <h6 class="details-box-subtitle m-b-20 f-w-400" id="vaccineManufacturer">Pfizer</h6>
+                                      <h6 class="details-box-subtitle m-b-20 f-w-400" id="vaccineManufacturer"> </h6>
                                   </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                   <div class="col-sm">
                                     <p class="details-box-title m-b-10 f-w-600">Country Administered</p>
-                                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="countryAdministered">Singapore</h6>
+                                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="countryAdministered"> </h6>
                                   </div>
                                 </div>
                                 <br>
@@ -114,7 +114,7 @@
                                 <div class="row">
                                   <div class="col-sm">
                                     <p class="details-box-title m-b-10 f-w-600">Date Administered</p>
-                                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="dateAdministered">like today</h6>
+                                    <h6 class="details-box-subtitle m-b-20 f-w-400" id="dateAdministered"> </h6>
                                   </div>
                                 </div>
                             </div>
@@ -294,8 +294,17 @@
 
       function unixToDate(unixTime){
         var date = new Date(unixTime * 1000);
-        return date.toLocaleString("en-US");
+        var formattedDate = date.getFullYear().toString()+"/"+(date.getMonth()+1).toString()+"/"+(date.getDate()).toString();
+        return formattedDate;
+        // return date.toISOString();
       };
+
+      function weeks_between(dateAdministered) {
+        var ONE_WEEK = 60 * 60 * 24 * 7;
+        var currentDate = Date.now()/1000;
+        var difference_ms = Math.abs(currentDate - dateAdministered);
+        return Math.floor(difference_ms / ONE_WEEK);
+      }
 
       // view record
       $("form").on("submit", function (event) {
@@ -312,7 +321,7 @@
         document.getElementById("countryAdministered").innerHTML = country;
 
         var readableDate = unixToDate(dateAdministered);
-        document.getElementById("dateAdministered").innerHTML = readableDate;
+        document.getElementById("dateAdministered").innerHTML = readableDate+ " ("+weeks_between(dateAdministered)+" weeks ago)";
       });
     </script>
   </body>
