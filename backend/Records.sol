@@ -32,29 +32,33 @@ contract Records {
         string memory country,
         uint256 clinicKeyCert,
         uint256 clinicModulusCert
-    ) public payable returns (bool) {
-        if (
-            verifyClinic(
-                passportNumberEncrypted,
-                passportNumber,
-                country,
-                clinicKeyCert,
-                clinicModulusCert
-            )
-        ) {
-            passportNumbers.push(passportNumber);
-            records[passportNumber] = Record({
-                passportNumber: passportNumber,
-                vaccineManufacturer: vaccineManufacturer,
-                country: country,
-                timestamp: block.timestamp
-            });
-
-            analytics[country].totalVaccinated += 1;
-
-            return true;
+    ) public payable returns (string memory) {
+        if (records[passportNumber].timestamp > 0) {
+            return "Record already exists in the blockchain and is immutable, please check that you have entered the correct passport number.";
         } else {
-            return false;
+            if (
+                verifyClinic(
+                    passportNumberEncrypted,
+                    passportNumber,
+                    country,
+                    clinicKeyCert,
+                    clinicModulusCert
+                )
+            ) {
+                passportNumbers.push(passportNumber);
+                records[passportNumber] = Record({
+                    passportNumber: passportNumber,
+                    vaccineManufacturer: vaccineManufacturer,
+                    country: country,
+                    timestamp: block.timestamp
+                });
+
+                analytics[country].totalVaccinated += 1;
+
+                return "Record added successfully.";
+            } else {
+                return "Error, please check that you are authorised.";
+            }
         }
     }
 

@@ -194,9 +194,9 @@
 		"name": "add",
 		"outputs": [
 			{
-				"internalType": "bool",
+				"internalType": "string",
 				"name": "",
-				"type": "bool"
+				"type": "string"
 			}
 		],
 		"stateMutability": "payable",
@@ -279,7 +279,7 @@
 		"type": "function"
 	}
 ];
-      var contractAddress = "0xA960922e3390681F5DcabD54FDa8A95B545987cA";
+      var contractAddress = "0x8F0A73319B5bB0385e3C8cD639da7450011BEb07";
       var contract = web3.eth.contract(contractAbi).at(contractAddress);
 
       // Set Account
@@ -307,7 +307,19 @@
         var country = $("[name=country]").val();
         console.log("country", country);
 
-        var status = contract.add(
+        var status = contract.add.call(
+          passportNumberEncrypted,
+          passportNumber,
+          vaccineManufacturer,
+          country,
+          clinicKeyCert,
+          clinicModulusCert,
+          {
+            gas: 1000000,
+          }
+        );
+
+        contract.add(
           passportNumberEncrypted,
           passportNumber,
           vaccineManufacturer,
@@ -319,11 +331,7 @@
           }
         );
         console.log(status);
-        if (status) {
-          showStatus("Record added successfully.");
-        } else {
-          showStatus("Error, please check that you are authorised.");
-        }
+        showStatus(status);
       });
     </script>
   </body>
