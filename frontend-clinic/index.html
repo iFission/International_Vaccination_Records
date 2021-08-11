@@ -434,30 +434,33 @@
             clinicModulusCert
           )
           .call({ gas: 1000000 })
-          .then((output) => {
-            console.log(output);
-            status = output;
+          .then(
+            (output) => {
+              console.log(output);
+              status = output;
 
-            if (status == "Record added successfully.") {
-              contract.methods
-                .add(
-                  passportNumberEncrypted,
-                  passportNumberHash,
-                  vaccineManufacturer,
-                  country,
-                  clinicKeyCert,
-                  clinicModulusCert
-                )
-                .send({ from: accountSelected, gas: 1000000 })
-                .then((output) => {
-                  console.log(output);
-                  console.log(status);
-                  showStatus(status);
-                });
-            } else {
-              showStatus(status);
-            }
-          });
+              if (status == "Record added successfully.") {
+                contract.methods
+                  .add(
+                    passportNumberEncrypted,
+                    passportNumberHash,
+                    vaccineManufacturer,
+                    country,
+                    clinicKeyCert,
+                    clinicModulusCert
+                  )
+                  .send({ from: accountSelected, gas: 1000000 })
+                  .then((output) => {
+                    console.log(output);
+                    console.log(status);
+                    showStatus(status);
+                  });
+              } else {
+                showStatus(status);
+              }
+            },
+            (e) => showStatus(e)
+          );
       });
     </script>
   </body>
