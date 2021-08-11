@@ -161,6 +161,26 @@ contract Records {
     function getCountryNames() public view returns (string[] memory) {
         return countryNames;
     }
+    
+    function verifyHash(uint[] memory input, bytes32 hash) public view returns (bool){
+        return keccak256(abi.encodePacked(input)) == hash;
+    }
+    
+    function getHash(uint[] memory input) public view returns (bytes32){
+        return keccak256(abi.encodePacked(input));
+    }
+    
+    function bytes32ToString(bytes32 _bytes32) public pure returns (string memory) {
+        uint8 i = 0;
+        while(i < 32 && _bytes32[i] != 0) {
+            i++;
+        }
+        bytes memory bytesArray = new bytes(i);
+        for (i = 0; i < 32 && _bytes32[i] != 0; i++) {
+            bytesArray[i] = _bytes32[i];
+        }
+        return string(bytesArray);
+    }
 
     constructor() public {
         countryToPublicKeyMap["Singapore"] = RsaKey(5, 35);
