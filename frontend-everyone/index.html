@@ -185,59 +185,6 @@
         inputs: [
           {
             internalType: "bytes32",
-            name: "_bytes32",
-            type: "bytes32",
-          },
-        ],
-        name: "bytes32ToString",
-        outputs: [
-          {
-            internalType: "string",
-            name: "",
-            type: "string",
-          },
-        ],
-        stateMutability: "pure",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256[]",
-            name: "passportNumberEncrypted",
-            type: "uint256[]",
-          },
-          {
-            internalType: "string",
-            name: "country",
-            type: "string",
-          },
-          {
-            internalType: "uint256",
-            name: "clinicKeyCert",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "clinicModulusCert",
-            type: "uint256",
-          },
-        ],
-        name: "decryptPassportNumber",
-        outputs: [
-          {
-            internalType: "uint256[]",
-            name: "",
-            type: "uint256[]",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "bytes32",
             name: "passportNumberHash",
             type: "bytes32",
           },
@@ -310,51 +257,8 @@
         stateMutability: "view",
         type: "function",
       },
-      {
-        inputs: [
-          {
-            internalType: "uint256[]",
-            name: "input",
-            type: "uint256[]",
-          },
-        ],
-        name: "getHash",
-        outputs: [
-          {
-            internalType: "bytes32",
-            name: "",
-            type: "bytes32",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256[]",
-            name: "input",
-            type: "uint256[]",
-          },
-          {
-            internalType: "bytes32",
-            name: "hash",
-            type: "bytes32",
-          },
-        ],
-        name: "verifyHash",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
     ];
-    var contractAddress = "0xe1F3e1c16f27E5938707D88694EACEd5bD9fC236";
+    var contractAddress = "0x7152192Ec75ADA9cf90ca0e158f387026269Aad7";
     var contract = new web3.eth.Contract(contractAbi, contractAddress);
 
     // Set Account

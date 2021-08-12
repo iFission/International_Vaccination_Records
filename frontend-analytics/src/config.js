@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = "0xe1F3e1c16f27E5938707D88694EACEd5bD9fC236";
+export const CONTRACT_ADDRESS = "0x7152192Ec75ADA9cf90ca0e158f387026269Aad7";
 
 export const CONTRACT_ABI = [
   {
@@ -9,14 +9,14 @@ export const CONTRACT_ABI = [
   {
     inputs: [
       {
-        internalType: "uint256",
+        internalType: "uint256[]",
         name: "passportNumberEncrypted",
-        type: "uint256",
+        type: "uint256[]",
       },
       {
-        internalType: "uint256",
-        name: "passportNumber",
-        type: "uint256",
+        internalType: "bytes32",
+        name: "passportNumberHash",
+        type: "bytes32",
       },
       {
         internalType: "string",
@@ -42,9 +42,9 @@ export const CONTRACT_ABI = [
     name: "add",
     outputs: [
       {
-        internalType: "bool",
+        internalType: "string",
         name: "",
-        type: "bool",
+        type: "string",
       },
     ],
     stateMutability: "payable",
@@ -53,17 +53,17 @@ export const CONTRACT_ABI = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "passportNumber",
-        type: "uint256",
+        internalType: "bytes32",
+        name: "passportNumberHash",
+        type: "bytes32",
       },
     ],
     name: "get",
     outputs: [
       {
-        internalType: "uint256",
+        internalType: "uint256[]",
         name: "",
-        type: "uint256",
+        type: "uint256[]",
       },
       {
         internalType: "string",

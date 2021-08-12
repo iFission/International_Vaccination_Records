@@ -104,7 +104,7 @@ contract Records {
         string memory country,
         uint256 clinicKeyCert,
         uint256 clinicModulusCert
-    ) public view returns (uint256[] memory) {
+    ) private view returns (uint256[] memory) {
         RsaKey memory clinicPublicKey = getClinicPublicKey(
             clinicKeyCert,
             clinicModulusCert,
@@ -130,7 +130,7 @@ contract Records {
         uint256 x,
         uint256 exponent,
         uint256 modulus
-    ) public view returns (uint256) {
+    ) private view returns (uint256) {
         return (x**exponent) % modulus;
     }
 
@@ -150,49 +150,16 @@ contract Records {
         );
     }
 
-    function addCountry(
-        string memory countryName,
-        uint256 population,
-        uint256 vaccinatedNumbers
-    ) private {
-        analytics[countryName] = CountryDetails({
-            name: countryName,
-            population: population,
-            totalVaccinated: vaccinatedNumbers
-        });
-        countryNames.push(countryName);
-    }
-
     function getCountryNames() public view returns (string[] memory) {
         return countryNames;
     }
 
     function verifyHash(uint256[] memory input, bytes32 hash)
-        public
+        private
         view
         returns (bool)
     {
         return keccak256(abi.encodePacked(input)) == hash;
-    }
-
-    function getHash(uint256[] memory input) public view returns (bytes32) {
-        return keccak256(abi.encodePacked(input));
-    }
-
-    function bytes32ToString(bytes32 _bytes32)
-        public
-        pure
-        returns (string memory)
-    {
-        uint8 i = 0;
-        while (i < 32 && _bytes32[i] != 0) {
-            i++;
-        }
-        bytes memory bytesArray = new bytes(i);
-        for (i = 0; i < 32 && _bytes32[i] != 0; i++) {
-            bytesArray[i] = _bytes32[i];
-        }
-        return string(bytesArray);
     }
 
     constructor() public {
@@ -229,6 +196,7 @@ contract Records {
         });
 
         countryToPublicKeyMap["United States"] = RsaKey(5, 50);
+        countryNames.push("United States");
         analytics["United States"] = CountryDetails({
             name: "United States",
             population: 328200000,
