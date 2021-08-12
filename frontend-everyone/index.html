@@ -362,10 +362,35 @@
     console.log(web3.eth.accounts[1]);
     console.log(contract);
 
+    function checkDataAdministered(dateAdministered){
+      if(dateAdministered==0){
+        return 0
+      }
+      else {
+        return dateAdministered;
+      }
+    }
+
+    function formatDate(dateAdministered){
+      if(dateAdministered==0){
+        return ""
+      } 
+      else{
+        var readableDate = unixToDate(dateAdministered);
+        var formattedDate = readableDate + " (" + weeks_between(dateAdministered) + " weeks ago)";
+        return formattedDate;
+      }
+    }
+
     function unixToDate(unixTime) {
-      var date = new Date(unixTime * 1000);
-      var formattedDate = date.getFullYear().toString() + "/" + (date.getMonth() + 1).toString() + "/" + (date.getDate()).toString();
-      return formattedDate;
+      if(dateAdministered==0){
+        return ""
+      }
+      else {
+        var date = new Date(unixTime * 1000);
+        var formattedDate = date.getFullYear().toString() + "/" + (date.getMonth() + 1).toString() + "/" + (date.getDate()).toString();
+        return formattedDate;
+      }
       // return date.toISOString();
     };
 
@@ -396,8 +421,8 @@
         document.getElementById("vaccineManufacturer").innerHTML = vaccineManufacturer;
         document.getElementById("countryAdministered").innerHTML = country;
 
-        var readableDate = unixToDate(dateAdministered);
-        document.getElementById("dateAdministered").innerHTML = readableDate + " (" + weeks_between(dateAdministered) + " weeks ago)";
+        // var readableDate = unixToDate(dateAdministered);
+        document.getElementById("dateAdministered").innerHTML = formatDate(dateAdministered);
       });
 
     });
