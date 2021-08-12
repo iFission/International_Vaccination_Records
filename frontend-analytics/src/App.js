@@ -183,13 +183,6 @@ class App extends Component {
           <CountryStats filteredCountry={this.state.countryDetails} />
           <Chart filteredCountry={this.state.countryDetails} />
         </div>
-
-        {/* <div className="right__screen">
-              <InfoDetails
-                filteredCountry={filteredCountry}
-                fetchMostVaccinated={fetchMostVaccinated}
-              />
-            </div> */}
         <div className="circle1"></div>
         <div className="circle2"></div>
         <div className="circle3"></div>

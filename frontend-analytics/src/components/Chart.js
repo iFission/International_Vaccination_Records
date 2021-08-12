@@ -9,13 +9,13 @@ const Chart = ({ filteredCountry }) => {
             <div className="total_vaccinations_chart">
               <Pie  
                 data={{
-                  labels: ["Total Vaccinationed","Total Population"],
+                  labels: ["Vaccinated","Unvaccinated"],
                   datasets: [
                     {
-                      data: [filteredCountry.vaccinated, filteredCountry.population],
+                      data: [filteredCountry.vaccinated, filteredCountry.population-filteredCountry.vaccinated],
                       label: `Total Vaccinations in ${filteredCountry.countryName}: ${filteredCountry.vaccinated}`,
-                      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)',],
-                      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',],
+                      backgroundColor: ['rgba(34,139,34, 0.2)', 'rgba(255, 99, 132, 0.2)',],
+                      borderColor: ['rgba(34,139,34, 1)', 'rgba(255, 99, 132, 1)',],
                       fill: true,
                     },
                   ],
