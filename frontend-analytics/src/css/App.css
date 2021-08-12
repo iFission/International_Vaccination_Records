@@ -2,7 +2,8 @@
   display: flex;
   padding: 1.5rem;
   min-height: 100vh;
-  background: linear-gradient(to right top, #65dfac, #79e3f3);
+  background-image: url("CovidBackground.jpg");
+  background-size: cover;
   z-index: 10;
 }
 
