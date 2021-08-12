@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import "./css/App.css";
 import Web3 from "web3";
-import { CONTRACT_ABI, CONTRACT_ADDRESS } from "./config";
-
-// COMPONENTS
-import Navigation from "./components/Navigation";
-import CountryStats from "./components/CountryStats";
-import InfoDetails from "./components/InfoDetails";
 import Chart from "./components/Chart";
+import CountryStats from "./components/CountryStats";
+import Navigation from "./components/Navigation";
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from "./config";
+import "./css/App.css";
 
 class App extends Component {
   componentWillMount() {
@@ -61,10 +58,8 @@ class App extends Component {
   };
 
   handleSearch = (val) => {
-    // setSearchBar(val);
     console.log("I'm changing the country to,", val);
     this.getCountryDetails(val);
-    // this.setState({countryDetails: val});
   };
 
   constructor(props) {

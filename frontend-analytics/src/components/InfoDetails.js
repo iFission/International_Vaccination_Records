@@ -1,6 +1,6 @@
 import React from "react";
-import CountUp from "react-countup";
 import { Bar } from "react-chartjs-2";
+import CountUp from "react-countup";
 import "../css/InfoDetails.css";
 
 const InfoDetails = ({ filteredCountry, fetchMostVaccinated }) => {

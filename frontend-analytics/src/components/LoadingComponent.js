@@ -1,5 +1,5 @@
+import { Puff, useLoading } from "@agney/react-loading";
 import React from "react";
-import { useLoading, Puff } from "@agney/react-loading";
 import "../css/LoadingComponent.css";
 
 const LoadingComponent = () => {
